@@ -1,0 +1,28 @@
+# Smart School Project.
+
+## Databases
+
+- Users (authentication and permissions)
+
+To install all of dependencies use:
+
+`pip install -r requirements.txt`
+
+## Django commands
+
+To see the whole list of packages installed use:
+
+`pip freeze`
+
+To clean cache (if you want to update static files):
+
+`CTRL` + `SHIFT` + `R`
+
+To open a console to manage and proof database:
+
+`python manage.py shell`
+from api.models import *
+from django.contrib.auth.models import *
+
+Para crear los contenedores
+`docker-compose up --build`
