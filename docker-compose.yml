@@ -1,0 +1,87 @@
+version: '3'
+
+services:
+  backend:
+    build: ./back-end
+    container_name: backend-app
+    ports:
+      - "8008:8000"
+    volumes:
+      - ./back-end/app:/app
+    command: >
+      sh -c "python3 manage.py wait_for_db &&
+             python3 manage.py makemigrations &&
+             python3 manage.py migrate &&
+             python3 manage.py runserver 0.0.0.0:8000"
+    env_file:
+      - ./.env.dev
+    networks:
+        - app-alioit-network
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14-alpine
+    container_name: db
+    env_file:
+      - ./.env.dev
+    volumes: 
+      - pgdata:/var/lib/postgresql/data
+    networks:
+        - app-alioit-network
+
+  pgadmin:
+      image: dpage/pgadmin4
+      container_name: pgadmin-db
+      restart: unless-stopped
+      depends_on:
+         - db
+      env_file:
+      - ./.env.dev
+      ports:
+        - "9465:80"
+      networks:
+        - app-alioit-network
+
+  redis:
+    image: redis
+    command: redis-server
+    networks:
+        - app-alioit-network
+    container_name: redis
+    ports:
+        - '6379:6379'
+  celery:
+    restart: always
+    container_name: celery
+    build: ./back-end
+    command: celery -A app worker -l info
+    volumes:
+      - ./back-end/app:/app
+    env_file:
+      - ./.env.dev
+    networks:
+        - app-alioit-network
+    depends_on:
+      - db
+      - redis
+      - backend
+
+  frontend:
+    build: ./front-end
+    container_name: frontend-app
+    volumes:
+      - ./front-end:/app
+    depends_on:
+      - backend
+    ports:
+      - 3003:3000
+    env_file:
+      - ./.env.dev
+    networks:
+        - app-alioit-network
+    stdin_open: true
+volumes:
+  pgdata:
+networks:
+  app-alioit-network:
