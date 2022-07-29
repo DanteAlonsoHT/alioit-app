@@ -11,14 +11,20 @@ Feel free to use the pg-admin as image with the credentials as you can see in th
 
 ## Create Docker images
 
-1. The first step to use this full stack app is running the next command:
+Open a terminal and run the next commands to set up the project.
+
+1. Go to the main directory of the project:
+
+`cd alioit-app`
+
+2. The first step to use this full stack app is running the next command:
 
 `docker-compose up --build`
 
-2. To use the front-end app, you can entry in the front-end container localhost.
+3. To use the front-end app, you can entry in the front-end container localhost.
 
 ## Run tests for Django REST User model
 
-3. If you want to proof the API REST using the TestCase libary in Python, feel free to run the next command.
+4. If you want to proof the API REST using the TestCase libary in Python, feel free to run the next command.
 
 `docker exec -it backend-app python manage.py test api`
