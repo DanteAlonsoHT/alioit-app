@@ -104,5 +104,5 @@ async def get_all_pokemon_from_urls(request):
     for index, url in enumerate(all_data_urls):
         data_returned.append({url.replace(URL_POKEMON_API, ''): pokemon_data[index]})
     total_time = time.time() - starting_time
-    return HttpResponse([{'data': data_returned, 'total_time': total_time, 'total_request': len(all_data_urls)}])
+    return HttpResponse([str({"data": data_returned, "total_time": total_time, "total_request": len(all_data_urls)}).replace("'", '"').replace("None", '"None"')])
         
