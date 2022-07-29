@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import { loadingToggleAction, loginAction } from "../store/actions/AuthActions";
 
 function Login(props) {
-  const [email, setEmail] = useState("demo@example.com");
+  const [email, setEmail] = useState("test@test.com");
   let errorsObj = { email: "", password: "" };
   const [errors, setErrors] = useState(errorsObj);
-  const [password, setPassword] = useState("123456");
+  const [password, setPassword] = useState("abcd12345");
   const dispatch = useDispatch();
 
   function onLogin(e) {
@@ -38,7 +38,7 @@ function Login(props) {
     <div className="login-form-bx">
       <div className="container-fluid">
         <div className="row vh-100">
-          <div className="col-lg-6 col-md-7 d-flex flex-column justify-content-center align-items-center">
+          <div className="col-lg-12 col-md-7 d-flex flex-column justify-content-center align-items-center">
             <div className="card p-5 bg-light">
               <div className="mb-4 text-center">
                 <h3 className="mb-3">Welcome!</h3>

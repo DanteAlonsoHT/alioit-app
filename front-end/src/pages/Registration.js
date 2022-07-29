@@ -11,10 +11,10 @@ const regexText = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
 const regexNumbers = /^\d+$/;
 
 function Register(props) {
-    const [email, setEmail] = useState('admin@admin.com');
+    const [email, setEmail] = useState('test@test.com');
     let errorsObj = { email: '', password: '' };
     const [errors, setErrors] = useState(errorsObj);
-    const [password, setPassword] = useState('abcd12345');
+    const [password, setPassword] = useState('');
     const [firstName, setFirstName] = useState('test');
     const [lastName, setLastName] = useState('test test');
     const [age, setAge] = useState(18);

@@ -59,7 +59,7 @@ const Components = (props) => {
             // handleCheckedMessages={handleCheckedMessages}
           />
         )}
-        <div>
+        <div className="pb-5 mb-5">
           <div
             className={`${!pagePath ? "container-fluid" : ""}`}
             style={{ minHeight: window.screen.height - 60 }}

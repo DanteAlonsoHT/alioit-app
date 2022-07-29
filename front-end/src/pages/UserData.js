@@ -39,7 +39,7 @@ const UserData = () => {
   useEffect(() => {
     if (lastMessage !== null) {
       const dataSocket = JSON.parse(lastMessage.data);
-      console.log(dataSocket);
+      // console.log(dataSocket);
       setMessage(dataSocket);
     }
   }, [lastMessage]);
@@ -73,7 +73,7 @@ const UserData = () => {
         </nav>
         <form className="card p-5">
           <h5>{ message.length } secrets so far.</h5>
-          <label className="fs-3 mb-3 text-center">Add a secret!</label>
+          <label className="fs-3 mb-3 text-center">Add a secret! {'(You can not repeat a secret)'}</label>
           <input
             type="text"
             className="form-control"

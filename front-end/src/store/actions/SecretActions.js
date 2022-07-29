@@ -31,7 +31,7 @@ export function createSecretAction(secretData, history) {
    
 	return (dispatch, getState) => {
         createSecret(secretData).then((response) => {
-			//console.log(response);
+			//console.log(response.data);
             const singleSecret = {
                 ...secretData,
                 id: response.data.id,

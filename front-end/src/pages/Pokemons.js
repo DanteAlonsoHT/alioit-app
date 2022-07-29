@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
 
 const Pokemons = () => {
-  const [pokemonData, setPokemonData] = useState([]);
+  const [pokemonData, setPokemonData] = useState({
+    total_time: 0,
+    total_request: 0,
+    data: {}
+  });
   let url = 'http://localhost:8008/api/get_all_pokemon_from_urls/';
 
   const get_all_pokemon_from_urls = () => {
@@ -11,7 +15,7 @@ const Pokemons = () => {
         'Content-Type': 'application/json',
       },
     })
-      .then((data) => (data.json()).replace("'", `"`))
+      .then((data) => data.json())
       .then((data) => {
         setPokemonData(data);
         console.log(data);
@@ -25,21 +29,24 @@ const Pokemons = () => {
   }, [])
 
   return (
-    <div className="container mt-5 pt-5">
+    <div className="container my-5 pt-5">
       <div className="row mt-5 pt-5 d-flex justify-content-center align-items-center">
         <h1 className="text-center">Welcome to API App!</h1>
-        <p className="mt-3 fs-6" style={{maxWidth: '500px'}}>Get all data from Pokemon API can be a long time task to do, but with aiohttp we can make more than 40 HTTP requests at once!</p>
-        <span>
+        <p className="my-3 fs-6" style={{maxWidth: '500px'}}>Get all data from Pokemon API can be a long time task to do, but with aiohttp we can make more than 40 HTTP requests at once!</p>        
+        <span className="card rounded shadow p-3 my-2">
           {
-            pokemonData && pokemonData.total_time
+            pokemonData && `${pokemonData.total_request} HTTP Requests done from Pokemon API.`
           }
-          seconds.
         </span>
-        <span>
+        <span className="card rounded shadow p-3 my-2">
           {
-            pokemonData && pokemonData.total_requests
+            pokemonData && `${pokemonData.total_time.toFixed(6)} seconds.`
           }
-          Requests done.
+        </span>
+        <span className="card rounded shadow p-3 my-2 text-wrap overflow-auto" style={{maxHeight: "360px"}}>
+          {
+            pokemonData && JSON.stringify(pokemonData.data)
+          }
         </span>
       </div>
     </div>
