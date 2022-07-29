@@ -80,6 +80,9 @@ services:
       - ./.env.dev
     networks:
         - app-alioit-network
+    command: >
+      sh -c "npm install &&
+              npm start"
     stdin_open: true
 volumes:
   pgdata:
